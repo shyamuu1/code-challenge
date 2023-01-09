@@ -18,17 +18,27 @@
 
 import json
 
+def get_children_length(d:dict):
+    for k, v in d.items():
+        if type(v) == list:
+            yield len(v)
+            for d in v:
+                yield from get_children_length(d)
+             
+
 def main():
     f = open('data.json')
     data = json.load(f)
 
+        
     # our results array, each member will have the form:
     # { "id": 7, "child_count": 5 }
-    results = []
-
+    results = [x for x in get_children_length(data)]
     # ...
+        
 
-    print(results)
+
+    print(results, sum(results))
 
 if __name__ == "__main__":
     main()
