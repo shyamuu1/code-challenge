@@ -22,8 +22,8 @@ def get_children_length(d:dict):
     for k, v in d.items():
         if type(v) == list:
             yield len(v)
-            for d in v:
-                yield from get_children_length(d)
+            for curr_dict in v:
+                yield from get_children_length(curr_dict)
              
 
 def main():
